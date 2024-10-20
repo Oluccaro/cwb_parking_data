@@ -138,4 +138,3 @@ class Traffic:
   def get_normalized_curitiba_periferical_traffic(self):
       for row in self.normalized_curitiba_periferical_traffic:
         yield row
-        
