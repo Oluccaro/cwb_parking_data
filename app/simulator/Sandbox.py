@@ -1,6 +1,7 @@
 #This is a place to put tests ans example of usage of code
 
 from utils import *
+import datetime as dt
 
 clock = Clock(initial_time="2012-10-01 12:00:00")  # Set initial time to October 1st, 2024 at noon
 
@@ -40,3 +41,14 @@ print(f"Normal distribution value at {x_value}: {prob.normal_distribution(x_valu
 print(f"Percentage below {x_value}: {prob.percentage_below_value(x_value)*100:.2f}%")
 print(f"Percentage above {x_value}: {prob.percentage_above_value(x_value)*100:.2f}%")
 print(f"Percentage between (with 5% window) {x_value}: {prob.percentage_around_value(x_value, 5)*100:.2f}%")
+
+
+# Example usage Holidays
+holidays = Holidays()
+print(holidays.list_feriados)
+
+feriado = dt.datetime.strptime("2024-11-15", "%Y-%m-%d")
+nao_feriado = dt.datetime.strptime("2024-10-15", "%Y-%m-%d")
+print(holidays.is_holiday(feriado))
+print(holidays.is_holiday(nao_feriado))
+
