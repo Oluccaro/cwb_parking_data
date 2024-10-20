@@ -79,3 +79,151 @@ AND p.tags->'parking' = 'street_side';   -- only street-side parking
 Feel free to download new datasets to further test the setup.
 
 ---
+
+# 🐍 Python Development Environment with Docker
+
+This setup allows you to develop and test Python code inside a Docker container. You can run specific scripts, install new Python modules, and ensure consistency across environments.
+
+## 🚀 Getting Started
+
+### Prerequisites 📋
+- 🐳 [Docker](https://docs.docker.com/get-docker/)
+- 🛠️ [Docker Compose](https://docs.docker.com/compose/install/)
+
+### Setup 🔧
+
+1. **Clone this repository** (or create your project directory).
+2. **Build the Docker container:**
+
+   ```bash
+   docker-compose build
+   ```
+
+3. **Start the Docker container:**
+
+   ```bash
+   docker-compose up -d
+   ```
+
+### 🏃 Running Python Scripts
+
+To execute a Python script inside the container, use the provided `runpy.sh` script. This allows you to run any Python script without attaching to the container manually.
+
+```bash
+./runpy.sh path/to/your_script.py
+```
+
+For example:
+
+```bash
+./runpy.sh scripts/my_script.py
+```
+
+### 🧪 Installing Python Modules
+
+You have two options for installing Python packages: temporary (for testing) and permanent (added to the project).
+
+#### Temporary Module Installation ⏳
+
+To install a new module inside the container for testing, first, attach to the running container:
+
+```bash
+docker exec -it app-python-1 bash
+```
+
+Then, inside the container, use `pip` to install the required module:
+
+```bash
+pip install <module_name>
+```
+
+Or you can run direcly with this:
+
+```bash
+docker exec -it app-python-1 pip install <module-name>
+```
+
+#### Permanent Module Installation 📦
+
+To permanently add a Python module to your project:
+
+1. Open the `requirements.txt` file.
+2. Add the desired module and version to the file. For example:
+
+   ```text
+   numpy==1.23.4
+   scipy==1.10.1
+   ```
+
+3. Rebuild the container to install the new packages:
+
+   ```bash
+   docker-compose build
+   ```
+
+4. Restart the container:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+5. **TIP**: You can check the modules you have install by running 
+    ```bash
+    pip list
+    ```
+
+    After that you can copy and paste the line of the new module you want and put it into the `requirements.txt`
+
+
+### 🛑 Stopping the Container
+
+To stop the container when you're done:
+
+```bash
+docker-compose down
+```
+
+### 📝 Summary of Commands
+
+- **🛠️ Build and start the container:**
+
+  ```bash
+  docker-compose build
+  docker-compose up -d
+  ```
+
+- **🏃 Run a Python script:**
+
+  ```bash
+  ./runpy.sh path/to/your_script.py
+  ```
+
+- **🔧 Install a new Python module temporarily (for testing):**
+
+  ```bash
+  docker exec -it app-python-1 bash
+  pip install <module_name>
+  ```
+
+- **📦 Install a new Python module permanently (added to `requirements.txt`):**
+
+  1. Add the module to `requirements.txt`.
+  2. Rebuild the container:
+
+     ```bash
+     docker-compose build
+     ```
+
+  3. Restart the container:
+
+     ```bash
+     docker-compose up -d
+     ```
+
+- **🛑 Stop the container:**
+
+  ```bash
+  docker-compose down
+  ```
+
+---
