@@ -47,12 +47,3 @@ class Clock:
         Returns the current hour of the day (0-23).
         """
         return self.time.hour
-
-# Example usage
-clock = Clock(initial_time="2024-10-01 12:00:00")  # Set initial time to October 1st, 2024 at noon
-
-# Use the simulation generator
-for current_time in clock.simulate(step_seconds=3600, duration_steps=5):  # Simulate 5 hours
-    print(f"Simulated time: {current_time}")
-    print(f"Day of the week: {clock.get_day_of_week()}")
-    print(f"Hour of the day: {clock.get_hour_of_day()}")
