@@ -1,5 +1,3 @@
----
-
 # 🚀 Starting the Setup
 
 ## Step 1: Start the PostGIS Instance and `osm2pgsql` Image
