@@ -3,4 +3,4 @@ FROM iboates/osm2pgsql
 
 # Define the working directory and copy the map file
 WORKDIR /osmdata
-COPY /map-data/map.osm /osmdata/map.osm
+COPY /map-data/ /osmdata/
