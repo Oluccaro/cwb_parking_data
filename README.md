@@ -7,14 +7,14 @@ docker compose up -d
 
 The data we're going to  be using is on map.osm and consist about a small region from Curitiba
 
-To do the import of the data you just run
+To do the import of the data you just run (while inside de /data directory)
 
 ```bash
-docker compose run -v $(pwd):/data osm2pgsql \\
- -d osm \\
- -U osmuser \\
- -H postgis \\
- -P 5432 \\
+ docker compose run -v $(pwd)/map-data:/data osm2pgsql \
+ -d osm \    
+ -U osmuser \
+ -H postgis \
+ -P 5432 \             
 -c -k /data/map.osm
 ```
 
