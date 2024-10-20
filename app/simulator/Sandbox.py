@@ -1,8 +1,6 @@
 #This is a place to put tests ans example of usage of code
 
-from Clock import Clock
-from Traffic import Traffic
-from Probability import Probability
+from utils import *
 
 clock = Clock(initial_time="2012-10-01 12:00:00")  # Set initial time to October 1st, 2024 at noon
 
