@@ -1,3 +1,3 @@
 from .ConnectionResolver import ConnectionResolver
-
-__all__ = ['ConnectionResolver']
+from .PostgresConnection import PostgresConnection
+__all__ = ['ConnectionResolver', 'PostgresConnection']
