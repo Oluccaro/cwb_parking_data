@@ -5,14 +5,15 @@ class ParkingTimelineRepo:
       self.connection: PostgresConnection = db_connection
     
     # Create a new parking record
-    def create(self, osm_id, parking_type, capacity, occupied, update_time):
+    def create(self, osm_id, parking_type, way_area, capacity, occupied, update_time):
       query = """
-      INSERT INTO parking_timeline (osm_id, parking_type, capacity, occupied, update_time)
-      VALUES (%(osm_id)s, %(parking_type)s, %(capacity)s, %(occupied)s, %(update_time)s);
+      INSERT INTO parking_timeline (osm_id, parking_type, way_area, capacity, occupied, update_time)
+      VALUES (%(osm_id)s, %(parking_type)s, %(way_area)s, %(capacity)s, %(occupied)s, %(update_time)s);
       """
       params = {
         'osm_id': osm_id, 
         'parking_type': parking_type,
+        'way_area': way_area,
         'capacity': capacity,
         'occupied': occupied,
         'update_time': update_time
