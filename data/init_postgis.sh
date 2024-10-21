@@ -18,7 +18,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname=osm <<-EOSQL
     CREATE TABLE IF NOT EXISTS parking_timeline (
         osm_id BIGINT,
         parking_type VARCHAR(255),
-        way_area NUMBERIC(15,4),
+        way_area NUMERIC(15,4),
         capacity INTEGER,
         occupied INTEGER,
         update_time TIMESTAMP
