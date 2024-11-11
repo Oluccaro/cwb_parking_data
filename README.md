@@ -227,3 +227,64 @@ docker-compose down
   ```
 
 ---
+
+# Simulation Class
+
+The `Simulation` class simulates parking occupancy over a specified period, using traffic data, holiday information, and outlier configurations to model parking occupancy levels for given parking spots. The results are stored in a database.
+
+## Getting Started
+
+### Requirements
+
+Ensure the following classes and components are set up:
+
+- **Clock**: Manages time within the simulation.
+- **Holidays**: Provides holiday information.
+- **Traffic**: Supplies normalized traffic data by hour and weekday.
+- **ParkingTimelineRepo**: Handles database operations for parking occupancy.
+- **OsmParkingRepo**: Manages parking spot data retrieval.
+
+### Initializing the Simulation
+
+To create a simulation case, write a script named `SimulationCase_[number].py` (e.g., `SimulationCase_001.py`) for each unique case or configuration. 
+
+Example setup:
+
+```python
+from Simulation import Simulation
+from repository import *
+
+# Start a new Simulation instance with the specified start time
+simulation = Simulation("2023-01-01 00:00:00")
+
+# Reset the timeline repository by deleting all previous data
+timelineRepo = ParkingTimelineRepoResolver().get()
+print("Deleting previous data from parking_timeline")
+timelineRepo.delete_all()
+
+# Retrieve parking spot data
+osmRepo = OsmParkingRepoResolver().get()
+parking_spots = osmRepo.find_all_stret_parking()
+
+# Setup simulation with parking spots data
+simulation.set_parking_list(parking_spots)
+
+# Run the simulation
+simulation.start()
+```
+
+### Configuring the Simulation
+You can configure various aspects of the Simulation instance before calling `start()`:
+
+- Set Outliers: Use `set_list_of_bad_outliers` and `set_list_of_good_outliers` to identify parking spots with abnormal occupancy levels.
+- Adjust Time Steps: Set the time interval between simulation steps with `set_steps_in_seconds`.
+- Set Parking List: Assign a list of parking spots to simulate occupancy for using `set_parking_list`
+
+### Example Customization
+To adjust specific outliers or change time steps:
+
+```python
+simulation.set_list_of_bad_outliers([1001, 1002])   # IDs for bad outliers
+simulation.set_list_of_good_outliers([2001, 2002])  # IDs for good outliers
+simulation.set_steps_in_seconds(7200)  # Advance simulation by 2 hours each step
+```

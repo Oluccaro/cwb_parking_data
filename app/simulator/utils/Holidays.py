@@ -12,6 +12,7 @@ class Holidays:
     def is_holiday(self, time: dt.datetime) -> bool:
         """
         Check if the given date is a holiday.
+        
         :param time: The datetime to check
         :return: True if the date is a holiday, False otherwise
         """

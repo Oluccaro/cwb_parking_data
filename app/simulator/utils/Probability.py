@@ -66,4 +66,7 @@ class Probability:
         percentage_below = self.percentage_below_value(x+window)
         return (percentage_above + percentage_below - 1)/2
 
+    @staticmethod
+    def random_between(initial:int, final: int)->int:
+        return random.randint(initial, final)
 
