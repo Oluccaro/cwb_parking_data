@@ -7,10 +7,10 @@ from repository import *
 
 clock = Clock(initial_time="2012-10-01 12:00:00")  # Set initial time to October 1st, 2024 at noon
 
-for current_time in clock.simulate(step_seconds=3600, duration_steps=24*30):  # Simulate 5 hours
+for current_time in clock.simulate(step_seconds=3600):  # Simulate 5 hours
     print(f"Simulated time: {current_time}")
     print(f"Day of the week: {clock.get_day_of_week()}")
-    print(f"Hour of the day: {clock.get_hour_of_day()}")
+    print(f"Hour of the day: {clock.get_hour()}")
     
 
 traffic = Traffic()
@@ -71,7 +71,7 @@ print(result)
 
 timelineRepo = ParkingTimelineRepo(db)
 
-timelineRepo.create(1, 'street_side', 10, 5, "2012-10-01 12:00:00")
+timelineRepo.create(1, 'street_side', 10, 5, 75, "2012-10-01 12:00:00")
 print(timelineRepo.find_by_id(1))
 timelineRepo.update(1, 'street_ally', 20, 0, "2012-10-02 13:00:00")
 print(timelineRepo.find_by_id(1))
@@ -85,6 +85,8 @@ print(timelineRepo.find_by_id(1))
 osmRepo = OsmParkingRepo(db)
 parking_spaces = osmRepo.find_all_stret_parking()
 print(parking_spaces)
+
+print(parking_spaces[0]['orientation'])
 
 
 
