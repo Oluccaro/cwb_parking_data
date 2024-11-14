@@ -1,6 +1,7 @@
 from utils import *
 from repository import * 
 from database import *
+from tqdm import tqdm
 import math
 import time
 
@@ -70,7 +71,9 @@ class Simulation:
         print(f"Running...")
 
         # Iterate through each time step in the simulation
-        for current in self.clock.simulate(self.step_in_seconds, self.end_time):
+        total_steps = len(list(self.clock.simulate(self.step_in_seconds, self.end_time)))  # Conta o total de passos
+
+        for current in tqdm(self.clock.simulate(self.step_in_seconds, self.end_time), total=total_steps, desc="Simulação em andamento"):
             for parking_space in self.parking_list:
                 # Check if the current day is a holiday
                 is_holiday = int(self.holidays.is_holiday(self.clock.time))
